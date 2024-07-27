@@ -34,7 +34,7 @@ const longestCommonSubsequence = (x: string, y: string) => {
       }
     }
   }
-  return b;
+  return b; // c
 };
 let result = "";
 
@@ -56,4 +56,11 @@ const printLCS = (b: any[], x: string, i: number, j: number) => {
 
 let b = longestCommonSubsequence("abcbdab", "bdcaba");
 printLCS(b, "abcbdab", 6, 6);
-console.log(result);
+/**
+ * expect: bcba
+ * x: a [b] [c] [b] d [a] b
+ * y: [b] d [c] a [b] [a]
+ * => bcba
+ * [char] meaning the common one
+ */
+console.log(result); 
