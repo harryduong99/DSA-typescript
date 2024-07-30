@@ -7,15 +7,14 @@
  * Subproblem: LIS[k] = LIS ending at index k
  * Relationships among subproblem (Compute):
  *
- * L(i) = 1 + max(L(j) ) where 0 < j < i and arr[j] < arr[i]; or
- * L(i) = 1, if no such j exists.
+ * L(i) = 1 + max(L(j) ) where 0 < j < i and arr[j] < arr[i];
+ * or L(i) = L[i-1], if no such j exists.
  *
  * Other examples:
  * B = [6,7,8,2,5] => LIS = 3: 6->7->8
  * C[5,2,8,6,3,6,9,5] => 2->3->6->9 => 4
  *
  */
-
 export const longestIncreasingSubsequence = (nums: number[]) => {
   let lis: number[] = []; // store the values (longest length)
   let max = 0;
@@ -34,9 +33,11 @@ export const longestIncreasingSubsequence = (nums: number[]) => {
         max = lis[i]; // rewrite new value
       }
     }
+    console.log("lis", lis);
   }
 
   return max;
 };
 
-console.log(longestIncreasingSubsequence([5, 2, 8, 6, 3, 6, 9, 5]));
+// console.log(longestIncreasingSubsequence([5, 2, 8, 6, 3, 6, 9, 5]));
+console.log(longestIncreasingSubsequence([6, 7, 8, 2]));
