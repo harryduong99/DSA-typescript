@@ -1,4 +1,4 @@
-const longestCommonSubsequence = (x: string, y: string) => {
+export const longestCommonSubsequence = (x: string, y: string) => {
   const m = x.length;
   const n = y.length;
   let b: (number | string)[][] = [],
@@ -63,4 +63,4 @@ printLCS(b, "abcbdab", 6, 6);
  * => bcba
  * [char] meaning the common one
  */
-console.log(result); 
+console.log(result);
