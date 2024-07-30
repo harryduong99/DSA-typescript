@@ -49,3 +49,5 @@ function isPalindrome2(s: string): boolean {
 // without converting to string: https://leetcode.com/problems/palindrome-number/solutions/4089743/typescript-javascript-o-k-solution-where-k-is-number-of-digits/
 
 console.log(isPalindrome(1));
+
+// can use the reverse technique for integer (reverseInteger.ts) to reverse a number and determine if it is palindrome (reversed number should be equal to original value)
