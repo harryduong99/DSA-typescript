@@ -1,6 +1,9 @@
 // https://leetcode.com/problems/combination-sum-ii/description/
 // in this problem, each candidate can be only used once in a combination
 
+// This problem can be solved by recursion/ backtracking or dynamic programming. 
+// Seems backtracking is a preferred solution. Below is the DP solution
+// Literally similar Subset Sum problem
 export function combinationSum2(
   candidates: number[],
   target: number
@@ -10,7 +13,7 @@ export function combinationSum2(
   for (let i = 0; i <= target; i++) {
     dp[i] = [];
   }
-  dp[0] = [[]]; // to start the loop combinations
+  dp[0] = [[]]; // to start the loop of combinations
 
   // build the dp, from 0 to target
   for (const candidate of candidates) {
@@ -22,6 +25,7 @@ export function combinationSum2(
       // then can have the combinations for target = i by adding the candidate element to each combination (*) above
       for (const combination of dp[i - candidate]) {
         // for non-repeating candidate requirement => check weather candidate is used or not
+        // if candidate duplication is allowed => can remove this check
         if (isCandidateAvailable(candidates, combination, candidate)) {
           const newCombination = [...combination, candidate];
           // duplication of combinations might happen if there are duplicated candidate in the candidates, eg: [1,2,4,1] (duplicated 1),
@@ -81,4 +85,5 @@ const isCandidateAvailable = (
   return hashTable.get(candidate) > 0;
 };
 
+// Run time is slow
 console.log(combinationSum2([10, 1, 2, 7, 6, 1, 5], 8));
