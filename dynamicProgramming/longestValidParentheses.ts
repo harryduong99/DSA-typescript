@@ -47,7 +47,20 @@ export function longestValidParenthesesSubsequence(s: string): number {
 // console.log(longestValidParenthesesSubsequence(")((()(()))"));
 
 /**
- * If it is finding longest substring:
+ * If it is finding longest substring: DP
+ * 
+ * We will take into consideration only two conditions:
+ * a. s[i - 1] == '(' && s[i] == ')';
+ * b. s[i - 1] == ')' && s[i] == ')'.
+ * Condition a. means that we have found a valid substring '( )' of parentheses of length 2. So we can put the length = 2 of that substring in the dp at index i: dp[i] = 2
+ * But it could be a subsequent valid substring (e.g. i = 5 to 6 - this valid substring is a part of the bigger valid substring i = 3 to 6). So we also have to check the value in dp[i - 2], and the resulting equation for condition a. will be dp[i] = 2 + dp[i - 2].
+ * 
+ * Condition b. s[i - 1] == ')' && s[i] == ')' means that s[ i ] could be a closing parentheses of the pattern '((...)) '.
+ * In this case we already checked s[i - 1] at the previous step and it could be a part of the previous valid or invalid substring,  let's call it sub(i-1)
+ * Also we have already put some value in dp[i - 1]. Thus, only s[ i ] needs further investigation.
+ * We have to check if the character before sub(i-1) equals '('. To do that we subtract the value of dp[i - 1] (the length of sub(i-1) plus 1
+ * => dp[i - (dp[i - 1] + 2)] <=> dp[i - dp[i - 1] - 2] ( we also have to check if there a valid substring just before the considering substring)
+ * 
  */
 function longestValidParenthesesSubstring(s: string): number {
   let maxLength: number = 0;
